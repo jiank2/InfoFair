@@ -119,23 +119,19 @@ if __name__ == "__main__":
     model_configs = ModelConfigs()
     model_configs = model_configs.get_configs()
 
-    # # select model configs
-    # model_config = model_configs[dataset]
+    # select model configs
+    model_config = model_configs[args.dataset]
 
-    # # initialize training configs
-    # train_config["dataset"] = dataset
-    # train_config["model"] = "infofair"  # model name
-    # train_config["fairness"] = "statistical_parity"  # fairness definition
-    # train_config["seed"] = 4  # random seed
-    # train_config["lr"] = 0.0001  # learning rate
-    # train_batch_size = 128
+    # initialize training configs
+    train_config["model"] = "infofair"  # model name
+    train_config["fairness"] = "statistical_parity"  # fairness definition
+    train_config["seed"] = 4  # random seed
+    train_config["lr"] = 0.0001  # learning rate
+    train_batch_size = 128
 
-    # for sensitive_attr in sensitive_attr_dict[dataset]:
-    #     train_config["sensitive"] = sensitive_attr
-
-    #     train(
-    #         model_config=model_config,
-    #         train_config=train_config,
-    #         preferred_label=1,
-    #         device_name="cuda:3",  # if only 1 gpu, change to cuda:0
-    #     )
+    train(
+        model_config=model_config,
+        train_config=train_config,
+        preferred_label=1,
+        device_name="cuda:3",  # if only 1 gpu, change to cuda:0
+    )
